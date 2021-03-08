@@ -15,7 +15,8 @@ export default createGlobalStyle`
   }
 
   html, body, #root{
-    height: 100%;
+    height: 100vh;
+    background: linear-gradient(-90deg, #7159c1, #ab59c1);
   }
 
   body{
@@ -32,6 +33,11 @@ export default createGlobalStyle`
 
   ul{
     list-style: none;
+  }
+
+  p{
+    margin: 0;
+    /* margin-bottom: 5px; */
   }
 
   button{
