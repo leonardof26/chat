@@ -1,8 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import * as Yup from 'yup'
 import { Form } from '@unform/web'
+import { io } from 'socket.io-client'
 import history from '../../services/history'
+
+import { messages } from '../../services/api/calls'
 
 import logo from '../../assets/Images/logo.png'
 
@@ -39,6 +42,22 @@ function Main() {
 
     setLoading(false)
   }
+
+  async function teste() {
+    await messages.getRoomMessages({ room: 'coisa' })
+  }
+
+  useEffect(() => {
+    const socket = io('http://localhost:3333/')
+
+    teste()
+
+    socket.on('coisa', () => {
+      console.log('jjjjj')
+    })
+
+    console.log(socket)
+  }, [])
 
   return (
     <Container>

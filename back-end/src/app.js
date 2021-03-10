@@ -1,23 +1,24 @@
+import 'dotenv/config'
+
 import express from 'express'
+import http from 'http'
 import cors from 'cors'
 import routes from './routes'
+import socket from 'socket.io'
 
-class App {
-  constructor() {
-    this.server = express()
+import './database'
 
-    this.middlewares()
-    this.routes()
-  }
+const app = express('http')
 
-  middlewares() {
-    this.server.use(cors())
-    this.server.use(express.json())
-  }
+const server = http.createServer(app)
+const io = socket(server, { cors: { origin: '*' } })
 
-  routes() {
-    this.server.use(routes)
-  }
-}
+app.use((req, res, next) => {
+  req.io = io
+  next()
+})
+app.use(cors())
+app.use(express.json())
+app.use(routes)
 
-export default new App().server
+export default server
