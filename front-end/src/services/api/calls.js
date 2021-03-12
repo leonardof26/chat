@@ -8,4 +8,13 @@ export const messages = {
 
     return api.get(`/message?${string}`)
   },
+  sendMessage: (payload) => api.post(`/message`, payload),
+}
+
+export const rooms = {
+  getRoomsList: () => api.get(`/message/rooms`),
+}
+
+export const user = {
+  registerUser: (payload) => api.post(`/user`, payload),
 }

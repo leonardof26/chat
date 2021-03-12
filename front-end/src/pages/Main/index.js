@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 import * as Yup from 'yup'
 import { Form } from '@unform/web'
-import { io } from 'socket.io-client'
+import { toast } from 'react-toastify'
 import history from '../../services/history'
-
-import { messages } from '../../services/api/calls'
 
 import logo from '../../assets/Images/logo.png'
 
@@ -29,7 +27,11 @@ function Main() {
     try {
       await schema.validate(data, { abortEarly: false })
 
-      history.push('/chat')
+      const user = { name: data.username }
+
+      localStorage.setItem('user', JSON.stringify(user))
+
+      history.push('/chat/')
     } catch (error) {
       const validationErrors = {}
 
@@ -38,31 +40,16 @@ function Main() {
       })
 
       formRef.current.setErrors(validationErrors)
+      toast.error('Erro ao registrar usuário')
     }
 
     setLoading(false)
   }
 
-  async function teste() {
-    await messages.getRoomMessages({ room: 'coisa' })
-  }
-
-  useEffect(() => {
-    const socket = io('http://localhost:3333/')
-
-    teste()
-
-    socket.on('coisa', () => {
-      console.log('jjjjj')
-    })
-
-    console.log(socket)
-  }, [])
-
   return (
     <Container>
       <Menu>
-        <img src={logo} alt="GoBarber" />
+        <img src={logo} alt="TalkingChat" />
 
         <Form onSubmit={handleSubmit} ref={formRef}>
           <div>

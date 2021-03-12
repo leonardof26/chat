@@ -1,29 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 export default function RouteWrapper({
   component: Component,
-  // isPrivate,
+  isPrivate,
   ...rest
 }) {
-  // if (!signed && isPrivate) {
-  //   return <Redirect to="/" />
-  // }
+  const user = JSON.parse(localStorage.getItem('user'))
 
-  // if (signed && !isPrivate) {
-  //   return <Redirect to="/students/list" />
-  // }
+  const signed = user && user.name
+
+  if (!signed && isPrivate) {
+    return <Redirect to="/" />
+  }
+
+  if (signed && !isPrivate) {
+    return <Redirect to="/chat/" />
+  }
 
   return <Route {...rest} render={(props) => <Component {...props} />} />
 }
 
 RouteWrapper.propTypes = {
-  // isPrivate: PropTypes.bool,
+  isPrivate: PropTypes.bool,
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
 }
 
-// RouteWrapper.defaultProps = {
-//   isPrivate: false,
-// }
+RouteWrapper.defaultProps = {
+  isPrivate: false,
+}

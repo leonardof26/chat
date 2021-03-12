@@ -8,6 +8,8 @@ class ChatRoomsController {
 
     return res.json(rooms)
   }
+
+  async
 }
 
 export default new ChatRoomsController()

@@ -7,6 +7,6 @@ const messageRouter = Router()
 
 messageRouter.get('/', MessageController.get)
 messageRouter.post('/', MessageController.store)
-messageRouter.post('/rooms', ChatRoomsController.get)
+messageRouter.get('/rooms', ChatRoomsController.get)
 
 export default messageRouter

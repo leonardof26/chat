@@ -9,7 +9,7 @@ function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Main} />
-      <Chat path="/chat/:chatRoom" component={Chat} isPrivate />
+      <Route path="/chat/:chatRoom?" exact component={Chat} isPrivate />
     </Switch>
   )
 }

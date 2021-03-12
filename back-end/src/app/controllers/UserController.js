@@ -16,19 +16,25 @@ class UserController {
 
     const { name, birthDate, email } = req.body
 
-    const userAlreadyExists = User.find({ email })
+    const userAlredyLogged = req.connectedUsers[email]
 
-    if (userAlreadyExists) {
-      return res.json('User already exists')
+    if (userAlredyLogged) {
+      return res.status(401).json({ error: 'User already logged in' })
     }
 
-    await User.create({
+    const userAlreadyExists = await User.find({ email })
+
+    if (userAlreadyExists.length) {
+      return res.json(userAlreadyExists[0])
+    }
+
+    const newUser = await User.create({
       name,
       birthDate,
       email,
     })
 
-    return res.json('user created')
+    return res.json(newUser)
   }
 }
 

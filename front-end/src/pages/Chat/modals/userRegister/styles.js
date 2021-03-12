@@ -25,6 +25,13 @@ export const Body = styled(Modal.Body)`
       }
     }
   }
+
+  .errorMessage {
+    color: #ff2d55;
+    align-self: flex-start;
+    /* margin: 0 0 10px; */
+    font-weight: bold;
+  }
 `
 
 export const BottomButtons = styled(Modal.Footer)``

@@ -31,7 +31,7 @@ export default function Input({ label, name, ...rest }) {
         {...rest}
       />
 
-      {error && <span className="error">{error}</span>}
+      {error && <span className="errorMessage">{error}</span>}
     </>
   )
 }

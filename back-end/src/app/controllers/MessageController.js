@@ -8,9 +8,6 @@ class MessageController {
       room: Yup.string().required(),
     })
 
-    console.log(req.io)
-    // req.io.emit('coisa')
-
     if (!(await schema.isValid(req.query))) {
       return res.status(400).json({ error: 'Validation Fails' })
     }
@@ -36,12 +33,20 @@ class MessageController {
 
     const { content, room, userName, userEmail } = req.body
 
-    await Message.create({
+    const messageReg = await Message.create({
       content,
       room,
       userName,
       userEmail,
     })
+
+    for (const usr in req.connectedUsers) {
+      if (req.connectedUsers[usr].room === room) {
+        const loggedSocket = req.connectedUsers[usr].socket
+
+        req.io.to(loggedSocket).emit('messageReceived', messageReg)
+      }
+    }
 
     return res.json('Message Created')
   }

@@ -90,6 +90,20 @@ export const UserInfo = styled.div`
   }
 `
 
+export const CreateRoom = styled.button`
+  margin: 1% 0;
+  width: 100%;
+  border: 0;
+  background: #fff;
+  height: 50px;
+  border-radius: 5px;
+
+  &:hover {
+    background: ${darken(0.08, '#f8f8f8')};
+    color: #222239;
+  }
+`
+
 export const RoomItem = styled.div`
   margin: 2% 0;
   padding: 10px;
@@ -208,8 +222,10 @@ export const MessagesArea = styled.div`
 export const UserMessage = styled.div`
   display: flex;
   flex-direction: column;
-  align-content: flex-end;
-  align-items: flex-end;
+  align-content: ${(props) =>
+    props.sender === 'others' ? 'flex-start' : 'flex-end'};
+  align-items: ${(props) =>
+    props.sender === 'others' ? 'flex-start' : 'flex-end'};
 `
 
 export const MessageInputArea = styled.div`
@@ -250,6 +266,24 @@ export const MessageInputArea = styled.div`
 
 export const RoomsArea = styled.div`
   margin: 5px 20px;
-  height: calc(100vh - 201px);
+  height: calc(100vh - 251px);
   overflow-y: auto;
+`
+
+export const UserConnection = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  span {
+    border: 1px solid;
+    border-color: ${(props) =>
+      props.type === 'connectionNotification' ? '#1abc9c' : '#ff2d55'};
+    color: ${(props) =>
+      props.type === 'connectionNotification' ? '#1abc9c' : '#ff2d55'};
+    border-radius: 5px;
+    padding: 5px 30px;
+  }
 `
