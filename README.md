@@ -12,9 +12,9 @@ Next, there are some images from the final application.
 
 ## App Screenshots
 
-<img src="https://i.ibb.co/42f2bGv/Screen-Shot-2021-03-12-at-6-40-50-PM.png" width="250" height="390" width="550">
-<img src="https://i.ibb.co/JcLc8St/Screen-Shot-2021-03-12-at-5-58-36-PM.png" width="250" height="390" width="550">
-<img src="https://i.ibb.co/61H6mjf/Screen-Shot-2021-03-12-at-5-53-16-PM.png" width="250" height="390" width="550">
+<img src="https://i.ibb.co/42f2bGv/Screen-Shot-2021-03-12-at-6-40-50-PM.png"  height="390" width="550">
+<img src="https://i.ibb.co/JcLc8St/Screen-Shot-2021-03-12-at-5-58-36-PM.png"  height="390" width="550">
+<img src="https://i.ibb.co/61H6mjf/Screen-Shot-2021-03-12-at-5-53-16-PM.png"  height="390" width="550">
 
 
 # How to run the project
