@@ -164,6 +164,10 @@ function Chat() {
     if (!currentRoom.current) return
 
     getRoomChat()
+  }, [currentRoom]) // eslint-disable-line
+
+  useEffect(() => {
+    if (!currentUser.email) return
 
     const socket = io('http://localhost:3333/', {
       query: { user: currentUser.email, room: currentRoom.current },
@@ -210,7 +214,7 @@ function Chat() {
         },
       ])
     })
-  }, [currentRoom]) // eslint-disable-line
+  }, [currentRoom, userIsRegistered]) // eslint-disable-line
 
   useEffect(() => {
     scrollToLastMessage()

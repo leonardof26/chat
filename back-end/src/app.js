@@ -16,6 +16,8 @@ const io = socket(server, { cors: { origin: '*' } })
 const connectedUsers = {}
 
 io.on('connection', (socket) => {
+  const { room, user } = socket.handshake.query
+
   socket.on('join', (payload) => {
     const { room, user } = payload.query
 
@@ -50,9 +52,9 @@ io.on('connection', (socket) => {
         socket.to(loggedSocket).emit('desconnect', user)
       }
     }
-
-    connectedUsers[user] = { socket: socket.id, room }
   })
+
+  connectedUsers[user] = { socket: socket.id, room }
 })
 
 app.use((req, res, next) => {
